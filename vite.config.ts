@@ -9,17 +9,24 @@ export default defineConfig(() => ({
 	plugins: [
 		svelte({
 			compilerOptions: {
-				customElement: true
+				customElement: true,
 			}
 		}),
 		tailwindcss(),
 		devtoolsJson()
 	],
+	vitePlugin: {
+		emitCss: true,
+		style: {
+			postcss: true
+		}
+	},
 	build: {
 		lib: {
 			// map each entry to its desired bundle name
 			entry: {
 				pomwc: resolve(__dirname, 'src/main.ts'),
+				toc: resolve(__dirname, 'src/toc.ts'),
 				base: resolve(__dirname, 'src/base.ts')
 			},
 			formats: ['es'],

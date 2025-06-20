@@ -11,7 +11,8 @@
 		children: TocNode[];
 	}
 
-	let htmlString = '';
+	// `nodes` holds the current level's TOC entries; defaults empty until onMount
+	export let nodes: TocNode[] = [];
 
 	function buildTree(items: TocNode[]): TocNode[] {
 		const root: TocNode[] = [];
@@ -32,21 +33,6 @@
 		return root;
 	}
 
-	function renderTree(nodes: TocNode[]): string {
-		let out = '<ul class="pl-4 list-none">';
-		for (const n of nodes) {
-			const prefix = n.level === 2 ? '◇ ' : '';
-			out += `<li class="my-1">
-        <a href="#${n.id}" class="text-blue-600 no-underline text-sm block py-1 hover:underline hover:bg-blue-100">
-          ${prefix}${n.text}
-        </a>`;
-			if (n.children.length) out += renderTree(n.children);
-			out += '</li>';
-		}
-		out += '</ul>';
-		return out;
-	}
-
 	onMount(() => {
 		const headers = Array.from(
 			document.querySelectorAll<HTMLHeadingElement>('h1, h2, h3, h4, h5, h6')
@@ -57,15 +43,62 @@
 			children: [] as TocNode[]
 		}));
 
-		const tree = buildTree(headers);
-		htmlString = tree.length ? renderTree(tree) : '';
+		// initialize `nodes` for the top-level render
+		nodes = buildTree(headers);
 	});
 </script>
 
-{#if htmlString}
-	<nav class="block font-sans text-sm leading-snug">
-		{htmlString}
+{#if nodes.length}
+	<nav>
+		<ul>
+			{#each nodes as node (node.id)}
+				<li>
+					<a href={'#' + node.id}>
+						{node.level === 2 ? '◇ ' : ''}{node.text}
+					</a>
+					{#if node.children.length}
+						<!-- recursive rendering via svelte:self -->
+						<svelte:self nodes={node.children} />
+					{/if}
+				</li>
+			{/each}
+		</ul>
 	</nav>
 {:else}
-	<p class="text-gray-500 italic">No headings found.</p>
+	<nav>
+		<p>No headings found.</p>
+	</nav>
 {/if}
+
+<style>
+	:host {
+		display: block;
+		font-family: system-ui, sans-serif;
+		font-size: 0.875rem;
+		line-height: 1.375;
+	}
+	nav ul {
+		padding-left: 1rem;
+		list-style: none;
+		margin: 0;
+	}
+	nav li {
+		margin: 0.25rem 0;
+	}
+	nav a {
+		color: #2563eb;
+		text-decoration: none;
+		display: block;
+		padding: 0.25rem 0;
+		font-size: inherit;
+	}
+	nav a:hover {
+		text-decoration: underline;
+		background-color: #ebf8ff;
+	}
+	nav p {
+		color: #6b7280;
+		font-style: italic;
+		margin: 0;
+	}
+</style>

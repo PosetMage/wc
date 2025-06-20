@@ -1,3 +1,4 @@
+<!-- src/components/heading-id-injector.svelte -->
 <svelte:options customElement={{ tag: 'heading-id-injector', shadow: 'open' }} />
 
 <script lang="ts">
