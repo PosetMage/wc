@@ -17,8 +17,8 @@ export default defineConfig(() => ({
 		lib: {
 			// map each entry to its desired bundle name
 			entry: {
-				algo: resolve(__dirname, 'src/algo/main.ts'),
-				documents: resolve(__dirname, 'src/documents/main.ts'),
+				slides: resolve(__dirname, 'src/slides/main.ts'),
+				doc_ui: resolve(__dirname, 'src/doc_ui/main.ts'),
 				wc: resolve(__dirname, 'src/wc/main.ts')
 			},
 			formats: ['es'],
