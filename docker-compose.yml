@@ -1,8 +1,17 @@
 services:
+  dev:
+    image: node:24
+    working_dir: /app
+    volumes:
+      - ./:/app/
+    command: tail -f /dev/null
+    stdin_open: true
+    tty: true
+
   web:
     image: nginx:alpine
     ports:
-      - "127.0.0.1:61280:80"
+      - '127.0.0.1:61280:80'
     volumes:
       - ./dist/:/usr/share/nginx/html/
 
@@ -10,6 +19,6 @@ services:
     build:
       context: .
     ports:
-      - "127.0.0.1:61280:80"
+      - '127.0.0.1:61280:80'
     volumes:
       - ./dist/:/usr/share/nginx/html/

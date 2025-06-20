@@ -20,7 +20,7 @@ export default defineConfig(() => ({
 			// map each entry to its desired bundle name
 			entry: {
 				pomwc: resolve(__dirname, 'src/main.ts'),
-				aaaa: resolve(__dirname, 'src/aaaa.ts')
+				base: resolve(__dirname, 'src/base.ts')
 			},
 			formats: ['es'],
 			// use the entry key when naming the output file

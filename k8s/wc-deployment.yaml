@@ -15,17 +15,17 @@ spec:
         app: wc
     spec:
       containers:
-      - name: wc
-        image: 127.0.0.1:7000/wc-wc:latest
-        imagePullPolicy: Always  # Add this line
-        ports:
-        - containerPort: 80
+        - name: wc
+          image: 127.0.0.1:7000/wc-wc:latest
+          imagePullPolicy: Always # Add this line
+          ports:
+            - containerPort: 80
 
-        volumeMounts:
-        - name: wc-src
-          mountPath: /usr/share/nginx/html/
+          volumeMounts:
+            - name: wc-src
+              mountPath: /usr/share/nginx/html/
       volumes:
-      - name: wc-src
-        hostPath:
-          path: <pwd-of-dist>
-          type: DirectoryOrCreate
+        - name: wc-src
+          hostPath:
+            path: <pwd-of-dist>
+            type: DirectoryOrCreate

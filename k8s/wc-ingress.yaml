@@ -5,28 +5,28 @@ metadata:
   name: ingress-wc
   namespace: web-component
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "true" # Optional: Redirect HTTP to HTTPS
-    nginx.ingress.kubernetes.io/limit-rps: "1"  # Rate limit: 1 request per second
-    nginx.ingress.kubernetes.io/proxy-buffering: "off"
-    nginx.ingress.kubernetes.io/proxy-cache: "off"
+    nginx.ingress.kubernetes.io/ssl-redirect: 'true' # Optional: Redirect HTTP to HTTPS
+    nginx.ingress.kubernetes.io/limit-rps: '1' # Rate limit: 1 request per second
+    nginx.ingress.kubernetes.io/proxy-buffering: 'off'
+    nginx.ingress.kubernetes.io/proxy-cache: 'off'
     # for mime types
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/proxy-hide-header: "Content-Type"
-    nginx.ingress.kubernetes.io/upstream-hash-by: "$request_uri"
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+    nginx.ingress.kubernetes.io/proxy-hide-header: 'Content-Type'
+    nginx.ingress.kubernetes.io/upstream-hash-by: '$request_uri'
 spec:
   ingressClassName: nginx
   tls:
-  - hosts:
-    - wc.posetmage.com
-    secretName: wc-tls-secret # Reference the Secret we created
+    - hosts:
+        - wc.posetmage.com
+      secretName: wc-tls-secret # Reference the Secret we created
   rules:
-  - host: wc.posetmage.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: wc-service
-            port:
-              number: 80
+    - host: wc.posetmage.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: wc-service
+                port:
+                  number: 80
