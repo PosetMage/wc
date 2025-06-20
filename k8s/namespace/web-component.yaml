@@ -1,0 +1,5 @@
+# namespace/web-component.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: web-component

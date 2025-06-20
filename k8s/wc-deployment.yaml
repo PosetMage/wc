@@ -1,0 +1,31 @@
+# wc-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wc-deployment
+  namespace: web-component
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wc
+  template:
+    metadata:
+      labels:
+        app: wc
+    spec:
+      containers:
+      - name: wc
+        image: 127.0.0.1:7000/wc-wc:latest
+        imagePullPolicy: Always  # Add this line
+        ports:
+        - containerPort: 80
+
+        volumeMounts:
+        - name: wc-src
+          mountPath: /usr/share/nginx/html/
+      volumes:
+      - name: wc-src
+        hostPath:
+          path: <pwd-of-dist>
+          type: DirectoryOrCreate
