@@ -11,9 +11,16 @@
 		children: TocNode[];
 	}
 
-	// `nodes` holds the current level's TOC entries; defaults empty until onMount
+	// Incoming nodes prop; empty array only for the root instance
 	export let nodes: TocNode[] = [];
 
+	// Internal storage for the tree built at the root
+	let rootNodes: TocNode[] = [];
+
+	// Determine if this is the top-level instance (no nodes passed in)
+	const isRoot = nodes.length === 0;
+
+	// Build a nested tree from a flat list of headers
 	function buildTree(items: TocNode[]): TocNode[] {
 		const root: TocNode[] = [];
 		const stack: TocNode[] = [];
@@ -33,31 +40,36 @@
 		return root;
 	}
 
+	// Only the root instance collects headers and builds the tree
 	onMount(() => {
-		const headers = Array.from(
-			document.querySelectorAll<HTMLHeadingElement>('h1, h2, h3, h4, h5, h6')
-		).map((h) => ({
-			id: h.id!,
-			text: h.textContent?.trim() || '',
-			level: parseInt(h.tagName.slice(1), 10),
-			children: [] as TocNode[]
-		}));
+		if (isRoot) {
+			const headers = Array.from(
+				document.querySelectorAll<HTMLHeadingElement>('h1, h2, h3, h4, h5, h6')
+			).map((h) => ({
+				id: h.id!,
+				text: h.textContent?.trim() || '',
+				level: parseInt(h.tagName.slice(1), 10),
+				children: [] as TocNode[]
+			}));
 
-		// initialize `nodes` for the top-level render
-		nodes = buildTree(headers);
+			rootNodes = buildTree(headers);
+		}
 	});
+
+	// Decide which set to render: the built tree at root, or passed-in nodes for children
+	$: rendered = isRoot ? rootNodes : nodes;
 </script>
 
-{#if nodes.length}
+{#if rendered.length}
 	<nav>
 		<ul>
-			{#each nodes as node (node.id)}
+			{#each rendered as node (node.id)}
 				<li>
 					<a href={'#' + node.id}>
 						{node.level === 2 ? '◇ ' : ''}{node.text}
 					</a>
 					{#if node.children.length}
-						<!-- recursive rendering via svelte:self -->
+						<!-- recurse with the child nodes, but these won't rebuild the tree -->
 						<svelte:self nodes={node.children} />
 					{/if}
 				</li>
