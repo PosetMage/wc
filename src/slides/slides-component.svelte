@@ -2,18 +2,16 @@
 <svelte:options customElement={{ tag: 'slides-component', shadow: 'open' }} />
 
 <script>
-  // Import the custom element class so it's registered
+  // Import the custom elements so they're registered
   import './slides-ui.svelte';
-
-  // If you have other *internal* Svelte components (not custom elements)
-  // that you want to render, import them normally:
-  import Sidebar from '../doc_ui/sidebar.svelte';
+  import '../doc_ui/sidebar.svelte';
+  import './table-of-slides.svelte';
 </script>
 
 <style>
   .wrapper {
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    grid-template-columns: auto 1fr;
     height: 100%;
   }
   .main {
@@ -23,13 +21,13 @@
 </style>
 
 <div class="wrapper">
-  <!-- top bar, menu, whatever -->
-  <Sidebar />
+  <!-- Sidebar with the table of contents -->
+  <sidebar-component>
+    <table-of-slides></table-of-slides>
+  </sidebar-component>
 
-  <!-- slides-ui lives in the middle -->
+  <!-- Slides UI in the main area -->
   <div class="main">
     <slides-ui></slides-ui>
   </div>
-
-
 </div>
