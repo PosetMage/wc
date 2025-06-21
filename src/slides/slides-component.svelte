@@ -1,11 +1,17 @@
 <!-- src/components/slides-component.svelte -->
 <svelte:options customElement={{ tag: 'slides-component', shadow: 'open' }} />
-
 <script>
-  // Import the custom elements so they're registered
+  import { onMount } from 'svelte';
+  import { initializeSlides } from './slide.store';
+
+  // register your other custom elements…
   import './slides-ui.svelte';
   import '../doc_ui/sidebar.svelte';
   import './table-of-slides.svelte';
+
+  onMount(() => {
+    initializeSlides();
+  });
 </script>
 
 <style>
@@ -21,12 +27,10 @@
 </style>
 
 <div class="wrapper">
-  <!-- Sidebar with the table of contents -->
   <sidebar-component>
     <table-of-slides></table-of-slides>
   </sidebar-component>
 
-  <!-- Slides UI in the main area -->
   <div class="main">
     <slides-ui></slides-ui>
   </div>

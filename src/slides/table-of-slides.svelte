@@ -4,34 +4,24 @@
 <script lang="ts">
   import { onMount } from 'svelte';
 
-  interface TocItem {
-    id: string;
-    text: string;
-  }
-
+  interface TocItem { id: string; text: string; }
   let items: TocItem[] = [];
 
   onMount(() => {
-    // Collect all <h2> headings
-    const headers = Array.from(
-      document.querySelectorAll<HTMLHeadingElement>('h2')
-    );
-
-    items = headers.map((h, index) => {
-      // Ensure each header has an ID
+    const headers = Array.from(document.querySelectorAll<HTMLHeadingElement>('h2'));
+    items = headers.map((h, i) => {
       let id = h.id;
       if (!id) {
-        id = `slide-${index}`;
+        id = `slide-${i}`;
         h.id = id;
       }
       return { id, text: h.textContent?.trim() ?? '' };
     });
   });
 
-  // Update the URL hash without scrolling
   function updateUrl(id: string) {
-    const newUrl = `${window.location.pathname}${window.location.search}#${id}`;
-    window.history.replaceState(null, '', newUrl);
+    // trigger hashchange
+    window.location.hash = id;
   }
 </script>
 
@@ -39,7 +29,9 @@
   <ul>
     {#each items as item}
       <li>
-        <a href={'#' + item.id} on:click|preventDefault={() => updateUrl(item.id)}>
+        <a href={'#' + item.id}
+           on:click|preventDefault={() => updateUrl(item.id)}
+        >
           {item.text}
         </a>
       </li>
@@ -73,3 +65,4 @@
     background-color: #ebf8ff;
   }
 </style>
+

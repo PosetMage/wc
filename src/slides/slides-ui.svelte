@@ -1,9 +1,15 @@
 <!-- src/components/slides-ui.svelte -->
 <svelte:options customElement={{ tag: 'slides-ui', shadow: 'open' }} />
 
-<script>
-  import { currentSlideIndex } from './slide.store';
+<script lang="ts">
+  import { currentSlideIndex, slideIds } from './slide.store';
 
+  /** Navigate by index by setting the hash */
+  function goTo(idx: number) {
+    if (idx >= 0 && idx < slideIds.length) {
+      window.location.hash = slideIds[idx];
+    }
+  }
 </script>
 
 <style>
@@ -43,7 +49,8 @@
 <!-- Previous slide button -->
 <button
   class="nav-button prev-button"
-  on:click={() => { $currentSlideIndex = $currentSlideIndex - 1 }}
+  on:click={() => goTo($currentSlideIndex - 1)}
+  disabled={$currentSlideIndex === 0}
   title="Previous slide (← key)"
 >
   ←
@@ -52,7 +59,8 @@
 <!-- Next slide button -->
 <button
   class="nav-button next-button"
-  on:click={() => { $currentSlideIndex = $currentSlideIndex + 1 }}
+  on:click={() => goTo($currentSlideIndex + 1)}
+  disabled={$currentSlideIndex === slideIds.length - 1}
   title="Next slide (→ key)"
 >
   →
