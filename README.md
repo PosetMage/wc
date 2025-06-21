@@ -1,6 +1,6 @@
 # Svetle 5 Web Component Template
 
-A starter repository for building and deploying custom web components with Vite. This template supports multiple modules—such as documentation UI, slides, and core web components—configurable via `vite.config.ts`, and is automatically built and deployed via GitHub Actions.
+A starter repository for building Sevlte 5 as web components with Vite 6 and deploying. This template supports multiple modules via configurable in `vite.config.ts`, and is automatically built and deployed via GitHub Actions.
 
 ## Getting Started
 
@@ -9,9 +9,6 @@ A starter repository for building and deploying custom web components with Vite.
 Open `vite.config.ts` and locate the `build.rollupOptions.input` section. Add, remove, or rename modules as needed:
 
 ```ts
-import { defineConfig } from 'vite';
-import { resolve } from 'path';
-
 export default defineConfig({
 	build: {
 		rollupOptions: {
@@ -26,11 +23,11 @@ export default defineConfig({
 });
 ```
 
-After running `npm run build`, each module will be output as an ES module:
+After running `npm run build`, each module will be output as an ES module. ex:
 
-- `slides.es.js`
-- `doc_ui.es.js`
-- `wc.es.js`
+- `dist/slides.es.js`
+- `dist/doc_ui.es.js`
+- `dist/wc.es.js`
 
 These are served from your deployment domain (e.g., `https://posetmage.com/wc/<module>.es.js`).
 
@@ -52,6 +49,8 @@ Embed the documentation UI component to automatically generate a table of conten
 <heading-id-injector> {{ content }} </heading-id-injector>
 ```
 
+see `demo/1/index.html`
+
 #### 2. Slides Mode
 
 Transform your Markdown content into a slide deck, with sidebar navigation:
@@ -70,6 +69,8 @@ but this need slide syntax, please see **[Example Slides Content](https://raw.gi
 
 <heading-id-injector> {{ content }} </heading-id-injector>
 ```
+
+see `demo/2/index.html`
 
 ---
 
