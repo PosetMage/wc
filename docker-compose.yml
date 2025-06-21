@@ -7,18 +7,3 @@ services:
     command: tail -f /dev/null
     stdin_open: true
     tty: true
-
-  web:
-    image: nginx:alpine
-    ports:
-      - '127.0.0.1:61280:80'
-    volumes:
-      - ./dist/:/usr/share/nginx/html/
-
-  wc:
-    build:
-      context: .
-    ports:
-      - '127.0.0.1:61280:80'
-    volumes:
-      - ./dist/:/usr/share/nginx/html/
