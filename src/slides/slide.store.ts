@@ -4,6 +4,7 @@ import { writable, get } from 'svelte/store';
 
 export const currentSlideIndex = writable<number>(0);
 export const slideIds: string[] = [];
+export const totalSlides = writable<number>(0);
 
 export function initializeSlides() {
 	// 1) Collect all <h2> headings as your “slides”
@@ -40,10 +41,17 @@ export function goToSlide(idx: number) {
 
 /** Advance one slide */
 export function nextSlide() {
-	goToSlide(get(currentSlideIndex) + 1);
+	const current = get(currentSlideIndex);
+	const total = get(totalSlides);
+	if (current < total - 1) {
+		goToSlide(current + 1);
+	}
 }
 
 /** Go back one slide */
 export function prevSlide() {
-	goToSlide(get(currentSlideIndex) - 1);
+	const current = get(currentSlideIndex);
+	if (current > 0) {
+		goToSlide(current - 1);
+	}
 }

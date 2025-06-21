@@ -3,10 +3,9 @@
 
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { currentSlideIndex, slideIds, initializeSlides } from './slide.store';
+	import { currentSlideIndex, slideIds, initializeSlides, totalSlides } from './slide.store';
 
 	let slideElements: HTMLElement[] = [];
-	let totalSlides = 0;
 
 	// Utility: replace just the hash without reloading
 	function updateURL(id: string) {
@@ -41,7 +40,7 @@
 	onMount(() => {
 		// 1) Grab all slides in the document
 		slideElements = Array.from(document.querySelectorAll<HTMLElement>('.slide'));
-		totalSlides = slideElements.length;
+		$totalSlides = slideElements.length;
 
 		// 2) Let the store assign IDs and set the initial index
 		initializeSlides();

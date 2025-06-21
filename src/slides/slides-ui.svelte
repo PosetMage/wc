@@ -1,7 +1,7 @@
 <svelte:options customElement={{ tag: 'slides-ui', shadow: 'open' }} />
 
 <script lang="ts">
-	import { currentSlideIndex, slideIds, nextSlide, prevSlide } from './slide.store';
+	import { currentSlideIndex, totalSlides, nextSlide, prevSlide } from './slide.store';
 
 	// Arrow-key handler
 	function onKeydown(e: KeyboardEvent) {
@@ -30,7 +30,7 @@
 <button
 	class="nav-button next-button"
 	on:click={nextSlide}
-	disabled={$currentSlideIndex >= slideIds.length - 1}
+	disabled={$currentSlideIndex >= $totalSlides - 1}
 	title="Next slide (→ key)"
 >
 	→
@@ -39,15 +39,15 @@
 <style>
 	.nav-button {
 		position: fixed;
-		bottom: 10px;
-		font-size: 2em;
+		bottom: 5px;
+		font-size: 1.5em;
 		padding: 0.5em;
 		background: #ffffff;
 		border: 1px solid #ccc;
 		border-radius: 4px;
 		cursor: pointer;
 		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-		z-index: 100;
+		z-index: 30;
 		transition: all 0.2s ease;
 	}
 
