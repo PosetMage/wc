@@ -60,11 +60,11 @@
 		position: fixed;
 		top: 0;
 		left: 0;
-		width: 200px;
+		width: 180px;
 		height: 100vh;
 		background-color: #fff;
 		box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-		transform: translateX(-200px);
+		transform: translateX(-180px);
 		transition: transform 0.3s ease-in-out;
 		display: flex;
 		flex-direction: column;

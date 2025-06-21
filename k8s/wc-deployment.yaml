@@ -22,10 +22,16 @@ spec:
             - containerPort: 80
 
           volumeMounts:
-            - name: wc-src
-              mountPath: /usr/share/nginx/html/
+            - name: dist
+              mountPath: /usr/share/nginx/html/cdn/
+            - name: demo
+              mountPath: /usr/share/nginx/html/demo/
       volumes:
-        - name: wc-src
+        - name: dist
           hostPath:
             path: <pwd-of-dist>
+            type: DirectoryOrCreate
+        - name: demo
+          hostPath:
+            path: <pwd-of-demo>
             type: DirectoryOrCreate

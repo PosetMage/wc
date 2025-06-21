@@ -13,12 +13,15 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: 'true'
     nginx.ingress.kubernetes.io/proxy-hide-header: 'Content-Type'
     nginx.ingress.kubernetes.io/upstream-hash-by: '$request_uri'
+    nginx.ingress.kubernetes.io/proxy-cache-bypass: "1"
+    nginx.ingress.kubernetes.io/proxy-no-cache: "1"
+
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
         - wc.posetmage.com
-      secretName: wc-tls-secret # Reference the Secret we created
+      secretName: wc-tls-secret
   rules:
     - host: wc.posetmage.com
       http:
