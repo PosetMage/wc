@@ -13,8 +13,8 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: 'true'
     nginx.ingress.kubernetes.io/proxy-hide-header: 'Content-Type'
     nginx.ingress.kubernetes.io/upstream-hash-by: '$request_uri'
-    nginx.ingress.kubernetes.io/proxy-cache-bypass: "1"
-    nginx.ingress.kubernetes.io/proxy-no-cache: "1"
+    nginx.ingress.kubernetes.io/proxy-cache-bypass: '1'
+    nginx.ingress.kubernetes.io/proxy-no-cache: '1'
 
 spec:
   ingressClassName: nginx
