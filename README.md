@@ -13,24 +13,24 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
 export default defineConfig({
-  build: {
-    rollupOptions: {
-      input: {
-        slides: resolve(__dirname, 'src/slides/main.ts'),
-        doc_ui: resolve(__dirname, 'src/doc_ui/main.ts'),
-        wc: resolve(__dirname, 'src/wc/main.ts'),
-        // Add your own modules here
-      }
-    }
-  }
+	build: {
+		rollupOptions: {
+			input: {
+				slides: resolve(__dirname, 'src/slides/main.ts'),
+				doc_ui: resolve(__dirname, 'src/doc_ui/main.ts'),
+				wc: resolve(__dirname, 'src/wc/main.ts')
+				// Add your own modules here
+			}
+		}
+	}
 });
 ```
 
 After running `npm run build`, each module will be output as an ES module:
 
-* `slides.es.js`
-* `doc_ui.es.js`
-* `wc.es.js`
+- `slides.es.js`
+- `doc_ui.es.js`
+- `wc.es.js`
 
 These are served from your deployment domain (e.g., `https://posetmage.com/wc/<module>.es.js`).
 
@@ -46,12 +46,10 @@ Embed the documentation UI component to automatically generate a table of conten
 <script type="module" src="https://posetmage.com/wc/doc_ui.es.js"></script>
 
 <sidebar-component>
-  <table-of-contents></table-of-contents>
+	<table-of-contents></table-of-contents>
 </sidebar-component>
 
-<heading-id-injector>
-  {{ content }}
-</heading-id-injector>
+<heading-id-injector> {{ content }} </heading-id-injector>
 ```
 
 #### 2. Slides Mode
@@ -67,14 +65,11 @@ but this need slide syntax, please see **[Example Slides Content](https://raw.gi
 <slides-component></slides-component>
 
 <sidebar-component>
-  <table-of-slides></table-of-slides>
+	<table-of-slides></table-of-slides>
 </sidebar-component>
 
-<heading-id-injector>
-  {{ content }}
-</heading-id-injector>
+<heading-id-injector> {{ content }} </heading-id-injector>
 ```
-
 
 ---
 
@@ -98,14 +93,15 @@ If you dont want to dev with node env, I'll recommand you docker,
    docker-compose up dev -d
    docker-compose exec dev bash
    ```
+
 2. Build your modules
    in the termianl
+
    ```bash
    npm run build
    ```
 
    This outputs your ES modules into `dist/` folder
-
 
 ## License
 

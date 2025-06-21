@@ -10,7 +10,6 @@
 	import '../doc_ui/sidebar.svelte';
 	import './table-of-slides.svelte';
 	import './slides-env.svelte';
-  
 
 	onMount(() => {
 		initializeSlides();
@@ -18,7 +17,6 @@
 </script>
 
 <div class="wrapper">
-
 	<slides-env></slides-env>
 	<div class="main">
 		<slides-ui></slides-ui>
