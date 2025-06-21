@@ -1,5 +1,6 @@
 // src/components/slide.store.ts
-import { writable } from 'svelte/store';
+
+import { writable, get } from 'svelte/store';
 
 export const currentSlideIndex = writable<number>(0);
 export const slideIds: string[] = [];
@@ -29,4 +30,20 @@ export function initializeSlides() {
 
 	// 4) Listen for hash changes
 	window.addEventListener('hashchange', setIndexFromHash, false);
+}
+
+/** Jump to the given slide index (clamped) by setting the hash */
+export function goToSlide(idx: number) {
+	const clamped = Math.max(0, Math.min(idx, slideIds.length - 1));
+	window.location.hash = slideIds[clamped];
+}
+
+/** Advance one slide */
+export function nextSlide() {
+	goToSlide(get(currentSlideIndex) + 1);
+}
+
+/** Go back one slide */
+export function prevSlide() {
+	goToSlide(get(currentSlideIndex) - 1);
 }

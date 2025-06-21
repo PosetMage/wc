@@ -30,10 +30,10 @@
 
 <nav>
 	<ul>
-		{#each items as item}
+		{#each items as item (item)}
 			<li>
 				<a href={'#' + item.id} on:click|preventDefault={() => updateUrl(item.id)}>
-					{item.text}
+					{'◆ ' + item.text}
 				</a>
 			</li>
 		{/each}

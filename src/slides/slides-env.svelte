@@ -2,7 +2,7 @@
 <svelte:options customElement={{ tag: 'slides-env', shadow: 'open' }} />
 
 <script lang="ts">
-	import { onMount, onDestroy } from 'svelte';
+	import { onMount } from 'svelte';
 	import { currentSlideIndex, slideIds, initializeSlides } from './slide.store';
 
 	let slideElements: HTMLElement[] = [];
@@ -38,17 +38,6 @@
 		currentSlideIndex.set(idx >= 0 ? idx : 0);
 	}
 
-	// Arrow-key navigation
-	function handleKeydown(event: KeyboardEvent) {
-		if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
-			event.preventDefault();
-			currentSlideIndex.update((n) => Math.min(n + 1, totalSlides - 1));
-		} else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
-			event.preventDefault();
-			currentSlideIndex.update((n) => Math.max(n - 1, 0));
-		}
-	}
-
 	onMount(() => {
 		// 1) Grab all slides in the document
 		slideElements = Array.from(document.querySelectorAll<HTMLElement>('.slide'));
@@ -64,14 +53,12 @@
 			window.scrollTo(0, 0);
 		});
 
-		// 4) Listen for hash and keyboard events
+		// 4) Listen for hash changes
 		window.addEventListener('hashchange', handleHashChange);
-		window.addEventListener('keydown', handleKeydown);
 
 		return () => {
 			unsubscribe();
 			window.removeEventListener('hashchange', handleHashChange);
-			window.removeEventListener('keydown', handleKeydown);
 		};
 	});
 </script>

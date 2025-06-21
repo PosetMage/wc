@@ -1,32 +1,36 @@
-<!-- src/components/slides-ui.svelte -->
 <svelte:options customElement={{ tag: 'slides-ui', shadow: 'open' }} />
 
 <script lang="ts">
-	import { currentSlideIndex, slideIds } from './slide.store';
+	import { currentSlideIndex, slideIds, nextSlide, prevSlide } from './slide.store';
 
-	/** Navigate by index by setting the hash */
-	function goTo(idx: number) {
-		if (idx >= 0 && idx < slideIds.length) {
-			window.location.hash = slideIds[idx];
+	// Arrow-key handler
+	function onKeydown(e: KeyboardEvent) {
+		if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+			e.preventDefault();
+			nextSlide();
+		} else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+			e.preventDefault();
+			prevSlide();
 		}
 	}
 </script>
 
-<!-- Previous slide button -->
+<!-- Listen at window level for arrow-keys -->
+<svelte:window on:keydown={onKeydown} />
+
 <button
 	class="nav-button prev-button"
-	on:click={() => goTo($currentSlideIndex - 1)}
+	on:click={prevSlide}
 	disabled={$currentSlideIndex === 0}
 	title="Previous slide (← key)"
 >
 	←
 </button>
 
-<!-- Next slide button -->
 <button
 	class="nav-button next-button"
-	on:click={() => goTo($currentSlideIndex + 1)}
-	disabled={$currentSlideIndex === slideIds.length - 1}
+	on:click={nextSlide}
+	disabled={$currentSlideIndex >= slideIds.length - 1}
 	title="Next slide (→ key)"
 >
 	→
