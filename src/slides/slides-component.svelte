@@ -20,10 +20,6 @@
 <div class="wrapper">
 
 	<slides-env></slides-env>
-	<sidebar-component>
-		<table-of-slides></table-of-slides>
-	</sidebar-component>
-
 	<div class="main">
 		<slides-ui></slides-ui>
 	</div>
