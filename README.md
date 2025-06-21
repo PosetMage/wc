@@ -10,6 +10,6 @@ env see `vite.config.ts`
 
 1. use k8s hold as cdn
 2. update with docker compose
-   ```docker compose exec dev bash```
+   `docker compose exec dev bash`
 3. modify file, in shell of dev
-   ```npm run build```
+   `npm run build`

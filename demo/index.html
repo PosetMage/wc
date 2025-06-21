@@ -1,63 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sidebar + TOC Demo</title>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Sidebar + TOC Demo</title>
 
-  <!-- Load your compiled web component bundle (includes heading-id-injector, table-of-contents, sidebar-component) -->
-  <script type="module" src="https://wc.posetmage.com/cdn/slides.es.js"></script>
+		<!-- Load your compiled web component bundle (includes heading-id-injector, table-of-contents, sidebar-component) -->
+		<script type="module" src="https://wc.posetmage.com/cdn/slides.es.js"></script>
 
-  <style>
+		<style>
+			body {
+				margin: 0;
+				padding: 2rem;
+				font-family: sans-serif;
+			}
+			main {
+				margin-left: 2rem;
+			}
+			section {
+				margin-bottom: 3rem;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Sidebar wraps the generated TOC -->
+		<slides-component></slides-component>
 
-    body {
-      margin: 0;
-      padding: 2rem;
-      font-family: sans-serif;
-    }
-    main {
-      margin-left: 2rem;
-    }
-    section {
-      margin-bottom: 3rem;
-    }
-  </style>
-</head>
-<body>
+		<!-- Wrap your main content in the ID injector so headings get unique IDs -->
+		<main>
+			<h1>Introduction</h1>
+			<p>This demo shows a dynamically generated table of contents in a sliding sidebar.</p>
 
-  <!-- Sidebar wraps the generated TOC -->
-  <slides-component></slides-component>
+			<h2>Getting Started</h2>
+			<p>Some introductory content…</p>
 
-  <!-- Wrap your main content in the ID injector so headings get unique IDs -->
-    <main>
-      <h1>Introduction</h1>
-      <p>This demo shows a dynamically generated table of contents in a sliding sidebar.</p>
+			<h3>Installation</h3>
+			<p>How to install the component…</p>
 
-      <h2>Getting Started</h2>
-      <p>Some introductory content…</p>
+			<h2>Features</h2>
+			<p>Overview of features…</p>
 
-      <h3>Installation</h3>
-      <p>How to install the component…</p>
+			<h3>Custom Styling</h3>
+			<p>How to style via CSS variables…</p>
 
-      <h2>Features</h2>
-      <p>Overview of features…</p>
+			<h2>Usage Examples</h2>
+			<h3>Basic Setup</h3>
+			<p>HTML snippet…</p>
+			<h3>Advanced Setup</h3>
+			<p>More complex cases…</p>
 
-      <h3>Custom Styling</h3>
-      <p>How to style via CSS variables…</p>
+			<h2>API Reference</h2>
+			<p>Detailing the component's public API…</p>
 
-      <h2>Usage Examples</h2>
-      <h3>Basic Setup</h3>
-      <p>HTML snippet…</p>
-      <h3>Advanced Setup</h3>
-      <p>More complex cases…</p>
-
-      <h2>API Reference</h2>
-      <p>Detailing the component's public API…</p>
-
-      <h2>Conclusion</h2>
-      <p>Wrapping up.</p>
-    </main>
-  
-
-</body>
+			<h2>Conclusion</h2>
+			<p>Wrapping up.</p>
+		</main>
+	</body>
 </html>
