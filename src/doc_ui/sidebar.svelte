@@ -29,6 +29,10 @@
 </div>
 
 <style>
+	* {
+		color: white;
+		background: rgb(51, 51, 51);
+	}
 	:host {
 		display: block;
 	}
@@ -37,18 +41,17 @@
 		position: fixed;
 		top: 5px;
 		left: 5px;
-		background: #fff;
-		border: 1px solid #ccc;
+		border: 1px solid rgb(24, 24, 24);
 		border-radius: 4px;
 		padding: 0.5em 0.75em;
 		cursor: pointer;
 		font-size: 1em;
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+		box-shadow: 0 2px 8px rgba(20, 20, 20, 0.15);
 		z-index: 10;
 		transition: all 0.2s ease;
 	}
 	.open-button:hover {
-		background: #f0f0f0;
+		background: rgb(63, 63, 63);
 		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 	}
 	.open-button.hidden {
@@ -62,7 +65,6 @@
 		left: 0;
 		width: 180px;
 		height: 100vh;
-		background-color: #fff;
 		box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 		transform: translateX(-180px);
 		transition: transform 0.3s ease-in-out;
@@ -76,8 +78,7 @@
 
 	.close-button {
 		align-self: flex-end;
-		background: #fff;
-		border: 1px solid #ccc;
+		border: 1px solid rgb(24, 24, 24);
 		border-radius: 4px;
 		padding: 0.25em 0.5em;
 		margin: 0.5em;
@@ -86,7 +87,7 @@
 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 	}
 	.close-button:hover {
-		background: #f0f0f0;
+		background: rgb(63, 63, 63);
 	}
 
 	.content {

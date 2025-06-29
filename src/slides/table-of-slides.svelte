@@ -41,6 +41,10 @@
 </nav>
 
 <style>
+	* {
+		color: white;
+		background: rgb(51, 51, 51);
+	}
 	:host {
 		display: block;
 		font-family: system-ui, sans-serif;
@@ -56,13 +60,12 @@
 		margin: 0.25rem 0;
 	}
 	nav a {
-		color: #0366d6;
 		text-decoration: none;
 		display: block;
 		padding: 0.25rem 0;
 	}
 	nav a:hover {
 		text-decoration: underline;
-		background-color: #ebf8ff;
+		background: rgb(33, 33, 33);
 	}
 </style>

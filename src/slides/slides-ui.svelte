@@ -37,13 +37,15 @@
 </button>
 
 <style>
+	* {
+		color: white;
+		background: rgb(51, 51, 51);
+	}
 	.nav-button {
 		position: fixed;
 		bottom: 5px;
 		font-size: 1.5em;
 		padding: 0.5em;
-		background: #ffffff;
-		border: 1px solid #ccc;
 		border-radius: 4px;
 		cursor: pointer;
 		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -52,7 +54,6 @@
 	}
 
 	.nav-button:hover:not(:disabled) {
-		background: #f0f0f0;
 		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 	}
 
