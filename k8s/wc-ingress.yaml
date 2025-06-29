@@ -16,6 +16,12 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-cache-bypass: '1'
     nginx.ingress.kubernetes.io/proxy-no-cache: '1'
 
+    # — CORS annotations —
+    nginx.ingress.kubernetes.io/enable-cors: 'true' # enable CORS support :contentReference[oaicite:0]{index=0}
+    nginx.ingress.kubernetes.io/cors-allow-origin: '*' # allow any origin :contentReference[oaicite:1]{index=1}
+    nginx.ingress.kubernetes.io/cors-allow-methods: 'GET' # allowed HTTP methods :contentReference[oaicite:2]{index=2}
+    nginx.ingress.kubernetes.io/cors-allow-headers: 'Content-Type, Authorization, X-Requested-With, Accept, Origin'
+
 spec:
   ingressClassName: nginx
   tls:
