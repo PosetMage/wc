@@ -55,7 +55,7 @@ see `demo/1/index.html`
 
 Transform your Markdown content into a slide deck, with sidebar navigation:
 
-but this need slide syntax, please see **[Example Slides Content](https://github.com/HomunMage/Content/blob/main/Slides/2025/JSDC-WC/index.md)** or **[Example Slides Page](https://homun.posetmage.com/Content/Slides/2025/JSDC-WC/)**
+but this need slide syntax, please see **[Example Slides Content](https://raw.githubusercontent.com/HomunMage/Content/refs/heads/main/Slides/2025/JSDC-WC/index.md)** or **[Example Slides Page](https://homun.posetmage.com/Content/Slides/2025/JSDC-WC/)**
 
 ```html
 <script type="module" src="https://posetmage.com/wc/slides.es.js"></script>
