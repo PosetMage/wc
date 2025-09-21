@@ -44,8 +44,8 @@
 	.nav-button {
 		position: fixed;
 		bottom: 5px;
-		font-size: 1.5em;
-		padding: 0.5em;
+		font-size: 1em;
+		padding: 0.25em;
 		border-radius: 4px;
 		cursor: pointer;
 		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
