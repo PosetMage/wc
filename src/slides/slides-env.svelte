@@ -38,7 +38,35 @@
 	}
 
 	onMount(() => {
-		// 1) Grab all slides in the document
+		/* ----------------------------------------------------
+		 * AUTO-WRAP SLIDES: Wrap each <h2> and following nodes
+		 * into <div class="slide"> automatically.
+		 * ---------------------------------------------------- */
+		const allH2 = Array.from(document.querySelectorAll<HTMLHeadingElement>('h2'));
+
+		allH2.forEach((h2) => {
+			// Skip if already wrapped
+			if (h2.parentElement?.classList.contains('slide')) return;
+
+			const wrapper = document.createElement('div');
+			wrapper.classList.add('slide');
+
+			// Insert wrapper before the h2
+			h2.parentElement?.insertBefore(wrapper, h2);
+			wrapper.appendChild(h2);
+
+			// Move all content after h2 until the next h2
+			let cursor = wrapper.nextSibling;
+			while (cursor && !(cursor instanceof HTMLElement && cursor.tagName === 'H2')) {
+				const next = cursor.nextSibling;
+				wrapper.appendChild(cursor);
+				cursor = next;
+			}
+		});
+
+		/* ----------------------------------------------------
+		 * After wrapping, proceed with original initialization
+		 * ---------------------------------------------------- */
 		slideElements = Array.from(document.querySelectorAll<HTMLElement>('.slide'));
 		$totalSlides = slideElements.length;
 
@@ -62,7 +90,3 @@
 	});
 </script>
 
-<!--
-  This component intentionally renders nothing—
-  it simply wires up the slide environment.
--->

@@ -104,6 +104,15 @@ If you dont want to dev with node env, I'll recommand you docker,
 
    This outputs your ES modules into `dist/` folder
 
+
+## K8S
+
+```
+docker compose build wc && docker push 127.0.0.1:7000/wc-wc:latest
+kubectl apply -f .
+```
+
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

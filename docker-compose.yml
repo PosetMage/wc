@@ -7,3 +7,16 @@ services:
     command: tail -f /dev/null
     stdin_open: true
     tty: true
+
+  wc:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: 127.0.0.1:7000/wc-wc:latest
+
+  lint:
+    image: node:24
+    working_dir: /app
+    volumes:
+      - ./:/app/
+    command: npm run lint
