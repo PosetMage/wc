@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Mermaid Demo</title>
+
+		<style>
+			body {
+				margin: 0;
+				padding: 2rem;
+				font-family: sans-serif;
+				background: #1a1a2e;
+				color: #eee;
+			}
+			main {
+				max-width: 900px;
+				margin: 0 auto;
+			}
+			section {
+				margin-bottom: 3rem;
+			}
+			h1 {
+				border-bottom: 1px solid #444;
+				padding-bottom: 0.5rem;
+			}
+			h2 {
+				color: #aac;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="module" src="https://wc.posetmage.com/cdn/doc_ui.es.js"></script>
+
+		<mermaid-renderer></mermaid-renderer>
+
+		<main>
+			<h1>Mermaid Renderer Demo</h1>
+
+			<section>
+				<h2>Flowchart</h2>
+				<pre><code class="language-mermaid">graph LR
+    A[Start] --> B{Decision}
+    B -->|Yes| C[OK]
+    B -->|No| D[Cancel]
+    C --> E[End]
+    D --> E</code></pre>
+			</section>
+
+			<section>
+				<h2>Sequence Diagram</h2>
+				<pre><code class="language-mermaid">sequenceDiagram
+    participant Browser
+    participant Server
+    participant DB
+
+    Browser->>Server: GET /api/data
+    Server->>DB: SELECT * FROM items
+    DB-->>Server: rows
+    Server-->>Browser: JSON response</code></pre>
+			</section>
+
+			<section>
+				<h2>Class Diagram</h2>
+				<pre><code class="language-mermaid">classDiagram
+    class Animal {
+        +String name
+        +int age
+        +makeSound()
+    }
+    class Dog {
+        +fetch()
+    }
+    class Cat {
+        +purr()
+    }
+    Animal <|-- Dog
+    Animal <|-- Cat</code></pre>
+			</section>
+
+			<section>
+				<h2>State Diagram</h2>
+				<pre><code class="language-mermaid">stateDiagram-v2
+    [*] --> Idle
+    Idle --> Loading : fetch
+    Loading --> Success : resolve
+    Loading --> Error : reject
+    Error --> Loading : retry
+    Success --> [*]</code></pre>
+			</section>
+
+			<section>
+				<h2>Pie Chart</h2>
+				<pre><code class="language-mermaid">pie title Tech Stack
+    "Svelte" : 40
+    "TypeScript" : 30
+    "CSS" : 20
+    "Other" : 10</code></pre>
+			</section>
+		</main>
+	</body>
+</html>
