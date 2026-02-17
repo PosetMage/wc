@@ -5,3 +5,4 @@
 import './sidebar.svelte';
 import './heading-id-injector.svelte';
 import './table-of-contents.svelte';
+import './mermaid-renderer.svelte';

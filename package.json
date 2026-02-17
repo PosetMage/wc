@@ -41,6 +41,7 @@
 		"vitest-browser-svelte": "^0.1.0"
 	},
 	"dependencies": {
+		"mermaid": "^11.12.2",
 		"path": "^0.12.7"
 	}
 }
