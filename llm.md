@@ -12,13 +12,13 @@ This is a **Svelte 5 Web Components library** that compiles Svelte components in
 
 ## Tech Stack
 
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| Svelte | 5.39+ | Component framework with `customElement: true` |
-| Vite | 7.1+ | Build tool and dev server |
-| TypeScript | 5.9+ | Type safety |
-| Tailwind CSS | 4.1+ | Utility CSS (available but minimally used) |
-| Node.js | 24 | Runtime (Docker images) |
+| Technology   | Version | Purpose                                        |
+| ------------ | ------- | ---------------------------------------------- |
+| Svelte       | 5.39+   | Component framework with `customElement: true` |
+| Vite         | 7.1+    | Build tool and dev server                      |
+| TypeScript   | 5.9+    | Type safety                                    |
+| Tailwind CSS | 4.1+    | Utility CSS (available but minimally used)     |
+| Node.js      | 24      | Runtime (Docker images)                        |
 
 ## Project Structure
 
@@ -111,22 +111,23 @@ All Svelte components use `customElement: true` in `<svelte:options>`:
 ```
 
 Or simplified:
+
 ```svelte
 <svelte:options customElement="my-component" />
 ```
 
 ### Available Components
 
-| Component | Tag | Module | Description |
-|-----------|-----|--------|-------------|
-| Sidebar | `<sidebar-component>` | doc_ui | Sliding sidebar with slot for content |
-| TableOfContents | `<table-of-contents>` | doc_ui | Auto-generates TOC from h1-h6 headings |
-| HeadingIdInjector | `<heading-id-injector>` | doc_ui | Assigns IDs to headings without IDs |
-| SlidesComponent | `<slides-component>` | slides | Main slide container |
-| SlidesUI | `<slides-ui>` | slides | Navigation buttons (←/→) |
-| SlidesEnv | `<slides-env>` | slides | Auto-wraps h2s into slides |
-| TableOfSlides | `<table-of-slides>` | slides | Navigation for slides (h2-based) |
-| HelloWorld | `<hello-world>` | wc | Demo component with `name` prop |
+| Component         | Tag                     | Module | Description                            |
+| ----------------- | ----------------------- | ------ | -------------------------------------- |
+| Sidebar           | `<sidebar-component>`   | doc_ui | Sliding sidebar with slot for content  |
+| TableOfContents   | `<table-of-contents>`   | doc_ui | Auto-generates TOC from h1-h6 headings |
+| HeadingIdInjector | `<heading-id-injector>` | doc_ui | Assigns IDs to headings without IDs    |
+| SlidesComponent   | `<slides-component>`    | slides | Main slide container                   |
+| SlidesUI          | `<slides-ui>`           | slides | Navigation buttons (←/→)               |
+| SlidesEnv         | `<slides-env>`          | slides | Auto-wraps h2s into slides             |
+| TableOfSlides     | `<table-of-slides>`     | slides | Navigation for slides (h2-based)       |
+| HelloWorld        | `<hello-world>`         | wc     | Demo component with `name` prop        |
 
 ### Usage Example
 
@@ -134,15 +135,15 @@ Or simplified:
 <script type="module" src="https://posetmage.com/wc/doc_ui.es.js"></script>
 
 <sidebar-component>
-  <table-of-contents></table-of-contents>
+	<table-of-contents></table-of-contents>
 </sidebar-component>
 
 <heading-id-injector>
-  <main>
-    <h1>Title</h1>
-    <h2>Section</h2>
-    <p>Content...</p>
-  </main>
+	<main>
+		<h1>Title</h1>
+		<h2>Section</h2>
+		<p>Content...</p>
+	</main>
 </heading-id-injector>
 ```
 
@@ -163,18 +164,19 @@ Hash-based navigation (`#slide-id`) syncs URL with current slide.
 
 ## Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start Vite dev server |
-| `npm run build` | Build ES modules to `dist/` |
-| `npm run preview` | Preview production build |
-| `npm run lint` | Format (Prettier) + lint (ESLint) |
-| `npm run check` | Svelte type checking |
-| `npm run test` | Run Vitest tests |
+| Command           | Description                       |
+| ----------------- | --------------------------------- |
+| `npm run dev`     | Start Vite dev server             |
+| `npm run build`   | Build ES modules to `dist/`       |
+| `npm run preview` | Preview production build          |
+| `npm run lint`    | Format (Prettier) + lint (ESLint) |
+| `npm run check`   | Svelte type checking              |
+| `npm run test`    | Run Vitest tests                  |
 
 ## Docker Workflows
 
 ### Development
+
 ```bash
 docker-compose up dev -d
 docker-compose exec dev bash
@@ -182,11 +184,13 @@ npm run build
 ```
 
 ### Build Only (extract dist/)
+
 ```bash
 docker build -f Dockerfile.build --target export --output dist .
 ```
 
 ### Production Image (nginx)
+
 ```bash
 docker build -t wc .
 docker run -p 8080:80 wc
@@ -197,6 +201,7 @@ docker run -p 8080:80 wc
 ### GitHub Actions (.github/workflows/deploy.yml)
 
 On push to `main`:
+
 1. Checkout code
 2. Build using `Dockerfile.build` with buildx caching
 3. Upload `dist/` as artifact
@@ -205,6 +210,7 @@ On push to `main`:
 ## Kubernetes Deployment
 
 Manifests in `k8s/`:
+
 - **Namespace**: `web-component`
 - **Deployment**: Runs nginx with `dist/` mounted
 - **Service**: NodePort on 30000
@@ -225,6 +231,7 @@ Manifests in `k8s/`:
 ### Add a New Web Component
 
 1. Create `src/<module>/<ComponentName>.svelte`:
+
    ```svelte
    <svelte:options customElement="component-name" />
    <script lang="ts">
@@ -234,6 +241,7 @@ Manifests in `k8s/`:
    ```
 
 2. Import in the module's `main.ts`:
+
    ```ts
    import './<ComponentName>.svelte';
    ```

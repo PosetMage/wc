@@ -5,32 +5,25 @@
 	import { onMount } from 'svelte';
 	import mermaid from 'mermaid';
 
+	let svgContent = $state('');
+	let anchor: HTMLDivElement;
+
 	onMount(() => {
 		mermaid.initialize({ startOnLoad: false, theme: 'dark' });
 
-		// Find all <pre><code class="language-mermaid"> blocks in the host page
-		const codeBlocks = Array.from(
-			document.querySelectorAll<HTMLElement>('pre > code.language-mermaid')
-		);
+		const host = (anchor.getRootNode() as ShadowRoot).host as HTMLElement;
+		const definition = host.textContent?.trim() || '';
 
-		const targets: HTMLElement[] = [];
-
-		for (const code of codeBlocks) {
-			const pre = code.parentElement;
-			if (!pre) continue;
-
-			// Create a replacement <pre class="mermaid"> with the raw diagram text
-			const mermaidPre = document.createElement('pre');
-			mermaidPre.className = 'mermaid';
-			mermaidPre.textContent = code.textContent || '';
-			pre.replaceWith(mermaidPre);
-			targets.push(mermaidPre);
-		}
-
-		if (targets.length > 0) {
-			mermaid.run({ nodes: targets });
+		if (definition) {
+			const id = `mermaid-${Math.random().toString(36).slice(2, 9)}`;
+			mermaid.render(id, definition).then(({ svg }) => {
+				svgContent = svg;
+			});
 		}
 	});
 </script>
 
-<slot />
+<div bind:this={anchor}>
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -- trusted mermaid.render() output -->
+	{@html svgContent}
+</div>

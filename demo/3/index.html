@@ -32,24 +32,27 @@
 	<body>
 		<script type="module" src="https://wc.posetmage.com/cdn/doc_ui.es.js"></script>
 
-		<mermaid-renderer></mermaid-renderer>
-
 		<main>
 			<h1>Mermaid Renderer Demo</h1>
 
 			<section>
 				<h2>Flowchart</h2>
-				<pre><code class="language-mermaid">graph LR
+				<!-- prettier-ignore -->
+				<mermaid-renderer>
+graph LR
     A[Start] --> B{Decision}
     B -->|Yes| C[OK]
     B -->|No| D[Cancel]
     C --> E[End]
-    D --> E</code></pre>
+    D --> E
+				</mermaid-renderer>
 			</section>
 
 			<section>
 				<h2>Sequence Diagram</h2>
-				<pre><code class="language-mermaid">sequenceDiagram
+				<!-- prettier-ignore -->
+				<mermaid-renderer>
+sequenceDiagram
     participant Browser
     participant Server
     participant DB
@@ -57,12 +60,15 @@
     Browser->>Server: GET /api/data
     Server->>DB: SELECT * FROM items
     DB-->>Server: rows
-    Server-->>Browser: JSON response</code></pre>
+    Server-->>Browser: JSON response
+				</mermaid-renderer>
 			</section>
 
 			<section>
 				<h2>Class Diagram</h2>
-				<pre><code class="language-mermaid">classDiagram
+				<!-- prettier-ignore -->
+				<mermaid-renderer>
+classDiagram
     class Animal {
         +String name
         +int age
@@ -75,27 +81,34 @@
         +purr()
     }
     Animal <|-- Dog
-    Animal <|-- Cat</code></pre>
+    Animal <|-- Cat
+				</mermaid-renderer>
 			</section>
 
 			<section>
 				<h2>State Diagram</h2>
-				<pre><code class="language-mermaid">stateDiagram-v2
+				<!-- prettier-ignore -->
+				<mermaid-renderer>
+stateDiagram-v2
     [*] --> Idle
     Idle --> Loading : fetch
     Loading --> Success : resolve
     Loading --> Error : reject
     Error --> Loading : retry
-    Success --> [*]</code></pre>
+    Success --> [*]
+				</mermaid-renderer>
 			</section>
 
 			<section>
 				<h2>Pie Chart</h2>
-				<pre><code class="language-mermaid">pie title Tech Stack
+				<!-- prettier-ignore -->
+				<mermaid-renderer>
+pie title Tech Stack
     "Svelte" : 40
     "TypeScript" : 30
     "CSS" : 20
-    "Other" : 10</code></pre>
+    "Other" : 10
+				</mermaid-renderer>
 			</section>
 		</main>
 	</body>
