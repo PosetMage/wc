@@ -32,7 +32,7 @@
 
 	// Respond to external hash changes
 	function handleHashChange() {
-		const hash = window.location.hash.slice(1);
+		const hash = decodeURIComponent(window.location.hash.slice(1));
 		const idx = slideIds.indexOf(hash);
 		currentSlideIndex.set(idx >= 0 ? idx : 0);
 	}

@@ -234,9 +234,11 @@ Manifests in `k8s/`:
 
    ```svelte
    <svelte:options customElement="component-name" />
+
    <script lang="ts">
-     export let prop: string = 'default';
+   	export let prop: string = 'default';
    </script>
+
    <div>{prop}</div>
    ```
 
