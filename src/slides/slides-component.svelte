@@ -19,6 +19,7 @@
 <div class="wrapper">
 	<slides-env></slides-env>
 	<div class="main">
+		<slot></slot>
 		<slides-ui></slides-ui>
 	</div>
 </div>
